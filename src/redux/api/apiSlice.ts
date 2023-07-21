@@ -3,9 +3,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // amader overall jotogulo api/endpoint gulo ache, sob ekhane integration hobe
 export const api = createApi({
   reducerPath: 'api',
+  tagTypes: ['comments'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://tech-net-server.vercel.app/',
-    // baseUrl: 'https://technet-server-phi.vercel.app/',
+    // baseUrl: 'https://tech-net-server.vercel.app/',
+    baseUrl: 'https://technet-server-phi.vercel.app/',
     // baseUrl: 'http://localhost:5000/',
   }),
   endpoints: (builder) => ({
@@ -25,6 +26,12 @@ export const api = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['comments'],
+    }),
+
+    getComment: builder.query({
+      query: (id) => `/comment/${id}`,
+      providesTags: ['comments'],
     }),
   }),
 });
@@ -33,4 +40,5 @@ export const {
   useGetProductsQuery,
   useSingleProductQuery,
   usePostCommentMutation,
+  useGetCommentQuery,
 } = api;
