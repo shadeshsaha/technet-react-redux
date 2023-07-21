@@ -15,7 +15,11 @@ interface IProps {
 export default function ProductReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>('');
 
-  const { data } = useGetCommentQuery(id);
+  const { data } = useGetCommentQuery(id, {
+    // to show comments/reviews instantly into UI
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 30000,
+  });
   console.log({ data });
   const [postComment, { isLoading, isError, isSuccess }] =
     usePostCommentMutation();
