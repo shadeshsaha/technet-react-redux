@@ -1,5 +1,5 @@
 import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useAppDispatch } from '@/redux/hoot';
+import { useAppDispatch } from '@/redux/hook';
 import { IProduct } from '@/types/globalTypes';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';

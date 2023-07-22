@@ -3,7 +3,7 @@ import {
   removeFromCart,
   removeOne,
 } from '@/redux/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hoot';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import {
   HiMinus,
   HiOutlinePlus,

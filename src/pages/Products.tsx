@@ -8,7 +8,7 @@ import {
   setPriceRange,
   toggleState,
 } from '@/redux/features/products/productSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hoot';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { IProduct } from '@/types/globalTypes';
 // import { IProduct } from '@/types/globalTypes';
 // import { useEffect, useState } from 'react';
