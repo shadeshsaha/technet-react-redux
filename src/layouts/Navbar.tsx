@@ -1,4 +1,7 @@
-import { useAppSelector } from '@/redux/hook';
+import { auth } from '@/lib/firebase';
+import { setUser } from '@/redux/features/user/userSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
+import { signOut } from 'firebase/auth';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/technet-logo.png';
@@ -16,9 +19,13 @@ import {
 
 export default function Navbar() {
   const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     console.log('Logout');
+    signOut(auth).then(() => {
+      dispatch(setUser(null));
+    });
   };
 
   return (

@@ -54,7 +54,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     // User k set korche
-    setUser: (state, action: PayloadAction<string>) => {
+    setUser: (state, action: PayloadAction<string | null>) => {
       state.user.email = action.payload;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
