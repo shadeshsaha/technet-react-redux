@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -28,6 +28,8 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
   const { user, isLoading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || '/';
 
   const onSubmit = (data: LoginFormInputs) => {
     console.log(data);
@@ -36,9 +38,27 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
   useEffect(() => {
     if (user.email && !isLoading) {
-      navigate('/');
+      // navigate('/');
+      navigate(from, { replace: true });
     }
-  }, [user.email, isLoading]);
+  }, [
+    // user.email, isLoading
+    isLoading,
+    navigate,
+    user.email,
+    from,
+  ]);
+
+  // alternate solution for checkout private route if not login
+  // const redirect = new URLSearchParams(location.search)?.get('redirect');
+  // console.log(redirect);
+  // useEffect(() => {
+  //   if (redirect && user?.email) {
+  //     navigate(redirect);
+  //   } else if (user?.email) {
+  //     navigate('/');
+  //   }
+  // }, [user]);
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
